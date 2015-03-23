@@ -1,9 +1,11 @@
 ﻿open System
 
-
-
-let filterMultipleSum mult1 mult2 N = Seq.init (N-1) (fun i -> i + 1)  |> Seq.filter(fun elem -> elem % mult1 = 0 || elem % mult2 = 0)
-                                                                       |> Seq.sum
+let filterMultipleSum mult1 mult2 N = 
+                            seq{
+                                    for i in [1..(N-1)] do
+                                        if i % mult1 = 0 || i% mult2 = 0 then
+                                            yield float i
+                                } |> Seq.sum 
 
 let consoleReadInt() =  
                         let str  = Console.ReadLine()
@@ -17,7 +19,7 @@ let consoleReadInt() =
 
 let consolePrint l = 
                      l |> List.map(fun elem -> match elem with
-                                                | Some(n) -> sprintf "%d" n
+                                                | Some(n) -> sprintf "%.0f" n
                                                 | None -> "")
                        |> List.map(printfn "%s")
 
