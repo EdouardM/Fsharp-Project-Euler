@@ -1,4 +1,5 @@
-﻿module Solution = 
+﻿namespace ProjectEuler.Multipleof3and5 
+module Solution = 
     open System
 
     ///////////// CORE LOGIC ////////////////////
@@ -84,13 +85,21 @@
 //Test the solution with the test cases provided in problem description:
 module Testcases =
     open Solution
+    open Xunit
+        
     //(I) 10 => (O) 23
-    //(I) 1000 => (O) 2318
+    [<Fact>]
+    let ``sumofMultList 10 gives 23``() = 
+        Assert.Equal(sumofMultList [3L; 5L] 10L, 23L)
+    
+    //(I) 100 => (O) 2318
+    [<Fact>]
+    let ``sumofMultList 100 gives 2318``() = 
+        Assert.Equal(sumofMultList [3L; 5L] 100L, 2318L)
+
     //(I) 10^7 => Should end fast < 6secs
     //(I) 10^8 => Should end fast < 6secs
     //(I) 10^9 => Should end fast < 6secs
-    //sum1toN 10^9 => (O) 500000000500000000L
-    ()
 
 
 //Build the program which runs in Console & HackerRank:
@@ -98,7 +107,7 @@ module Program =
     open Solution
     
     //Main program:
-    [<EntryPoint>]
+    //[<EntryPoint>]
     let main argv = 
         let nbTest =  consoleReadInt()
         solution nbTest
