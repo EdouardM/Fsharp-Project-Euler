@@ -49,6 +49,22 @@ module Solution =
                                                                       |> ignore
                 | None -> printfn "Bad Input"
 
+//Test the solution with the test cases provided in problem description:
+module Testcases =
+    open Solution
+    open Xunit
+        
+    [<Fact>]
+    let ``1395 largest prime factor is 29``() = 
+        Assert.Equal(29L, largestPrimeFactor 13195L)
+    
+    [<Fact>]
+    let ``10 largest prime factor is 5``() = 
+        Assert.Equal(5L, largestPrimeFactor 10L)
+
+    [<Fact>]
+    let ``17 largest prime factor is 17``() = 
+        Assert.Equal(17L, largestPrimeFactor 17L)
 
 //Build the program which runs in Console & HackerRank:
 module Program = 
