@@ -13,15 +13,19 @@ module Solution =
                 match n with
                     | 2L -> true
                     | _ ->  testprime 2L
+
+    ///Active Pattern Prime numbers:
+    let (|Prime|_|) n = match isPrime n with
+                            | true -> Some(n)
+                            | false -> None
     
     ///Builds a sequence of prime factors
-    let primeFactors n = [1L.. n/2L]    |> Seq.filter (fun i -> n % i = 0L)
-                                        |> Seq.filter isPrime
+    let primeFactors n = [1L.. n/2L] |> Seq.filter (fun i -> n % i = 0L && isPrime i)
                                         
     ///Picks the max prime factor or the number itself if its only factor is 1
-    let largestPrimeFactor n = 
-                        let res =   primeFactors n |> Seq.max
-                        if res = 1L then n else res
+    let largestPrimeFactor = function
+                                | Prime n -> n
+                                | n -> primeFactors n |> Seq.max
 
     ///////////// INPUT OUTPUT ////////////////////
     ///Reads input in Console, casts to int64
@@ -45,12 +49,13 @@ module Solution =
     //Function for the solution:
     let solution (n:int64 option) = 
              match n with 
-                | Some(n) -> 
-                            //Cast to int to use List.init:
-                            let n' = int n
-                            Array.init n' (fun i -> consoleReadInt()) |> Array.map(fun elem -> Option.map largestPrimeFactor elem)
-                                                                      |> consolePrint
-                                                                      |> ignore
+                | Some(n) 
+                    -> 
+                        //Cast to int to use List.init:
+                        let n' = int n
+                        Array.init n' (fun i -> consoleReadInt())   |> Array.map(fun elem -> Option.map largestPrimeFactor elem)
+                                                                    |> consolePrint
+                                                                    |> ignore
                 | None -> printfn "Bad Input"
 
 //Test the solution with the test cases provided in problem description:
