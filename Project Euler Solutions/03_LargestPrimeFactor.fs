@@ -3,7 +3,7 @@
 module Solution =
     open System
     open Checked 
-    ///////////// CORE LOGIC ////////////////////
+    ///////////// CORE LOGIC ///////////////////
 
     ///Tells if a number is a Prime number
     let isPrime n = 
@@ -14,14 +14,16 @@ module Solution =
                     | 2L -> true
                     | _ ->  testprime 2L
 
-    ///Active Pattern Prime numbers:
+    ///Active Pattern Prime numbers
     let (|Prime|_|) n = match isPrime n with
                             | true -> Some(n)
                             | false -> None
     
     ///Builds a sequence of prime factors
-    let primeFactors n = [1L.. n/2L] |> Seq.filter (fun i -> n % i = 0L && isPrime i)
-                                        
+    let primeFactors n = seq { yield 1L
+                               for i in [1L..n/2L] do
+                                    if  (n % i = 0L && isPrime i) then yield i}
+
     ///Picks the max prime factor or the number itself if its only factor is 1
     let largestPrimeFactor = function
                                 | Prime n -> n
