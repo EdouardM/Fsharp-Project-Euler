@@ -13,14 +13,19 @@ module Solution =
                 |> not
 
     ///Active Pattern Prime numbers
-    let (|Prime|_|) n = match isPrime n with
-                            | true -> Some(n)
-                            | false -> None
-    
+    let (|Prime|_|) n = if isPrime n then Some(n) else None     
+
+    let rec nextPrime i = match (i + 1L) with
+                            | Prime n -> n
+                            | _ -> nextPrime(i+1L)
+
+    ///Prime numbers infinite sequence
+    let primes = Seq.unfold (fun i -> Some(i, nextPrime i)) 1L
+
+ 
     ///Builds a sequence of prime factors
-    let primeFactors n = seq { yield 1L
-                               for i in [1L..n/2L] do
-                                    if  (n % i = 0L && isPrime i) then yield i}
+    let primeFactors n = primes |> Seq.takeWhile(fun p -> p < n)
+                                |> Seq.filter(fun p -> n % p = 0L)
 
     ///Picks the max prime factor or the number itself if its only factor is 1
     let largestPrimeFactor = function
@@ -64,7 +69,7 @@ module Testcases =
     open Xunit
         
     [<Fact>]
-    let ``1395 largest prime factor is 29``() = 
+    let ``13195 largest prime factor is 29``() = 
         Assert.Equal(29L, largestPrimeFactor 13195L)
     
     [<Fact>]
