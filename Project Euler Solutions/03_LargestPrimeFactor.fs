@@ -7,12 +7,10 @@ module Solution =
 
     ///Tells if a number is a Prime number
     let isPrime n = 
-                let rec testprime i =   if n % i = 0L then false
-                                        elif i > n/2L then true
-                                        else testprime (i+1L)
-                match n with
-                    | 2L -> true
-                    | _ ->  testprime 2L
+                let bound = int64 (sqrt(float n))
+                seq{2L..bound}
+                |> Seq.exists (fun x -> n % x = 0L) 
+                |> not
 
     ///Active Pattern Prime numbers
     let (|Prime|_|) n = match isPrime n with
