@@ -5,34 +5,29 @@ module Solution =
     open Checked 
     ///////////// CORE LOGIC ///////////////////
 
+    let noFactorOf n s = s |> Seq.exists(fun i -> n % i = 0L ) |> not
+
     ///Tells if a number is a Prime number
     let isPrime n = 
-                let bound = int64 (sqrt(float n))
-                seq{2L..bound}
-                |> Seq.exists (fun x -> n % x = 0L) 
-                |> not
+                    let bound = int64 (sqrt(float n))
+                    seq{2L..bound} |> noFactorOf n
 
     ///Active Pattern Prime numbers
-    let (|Prime|_|) n = if isPrime n then Some(n) else None     
+    let (|Prime|_|) n = if isPrime n then Some(n) else None 
 
-    let rec nextPrime i = match (i + 1L) with
-                            | Prime n -> n
-                            | _ -> nextPrime(i+1L)
-
-    ///Prime numbers infinite sequence
-    let primes = Seq.unfold (fun i -> Some(i, nextPrime i)) 1L
-
- 
-    ///Builds a sequence of prime factors
-    let primeFactors n = primes |> Seq.takeWhile(fun p -> p < n)
-                                |> Seq.filter(fun p -> n % p = 0L)
-
-    ///Picks the max prime factor or the number itself if its only factor is 1
-    let largestPrimeFactor = function
+    ///Picks the max prime factor or the number itself if it is prime
+    let largestPrimeFactor = function 
                                 | Prime n -> n
-                                | n -> primeFactors n |> Seq.max
-
-    ///////////// INPUT OUTPUT ////////////////////
+                                | n -> 
+                                    let bound = int64 (sqrt(float n))
+                                    [2L..bound]
+                                    |> Seq.filter(fun p -> n % p = 0L)
+                                    // To have all factors : keep both
+                                    |> Seq.collect(fun p -> [p ; n/p])
+                                    |> Seq.filter isPrime
+                                    |> Seq.max
+    
+    ///////////// INPUT OUTPUT //////////////////// 
     ///Reads input in Console, casts to int64
     let consoleReadInt() =  
                             let str  = Console.ReadLine()
@@ -42,13 +37,12 @@ module Solution =
                                     ex-> 
                                         printfn "Bad input: %s" str
                                         None
-
     //Print output to Console:
     let consolePrint l = 
                          l |> Array.map(fun elem -> match elem with
                                                     | Some(n) -> sprintf "%d" n
                                                     | None -> "")
-                           |> Array.map(printfn "%s")
+                           |> Array.map(printfn "%s")   
 
     ///////////// BUILD SOLUTION ////////////////////
     //Function for the solution:
@@ -85,7 +79,7 @@ module Program =
     open Solution
     
     //Main program:
-    //[<EntryPoint>]
+    [<EntryPoint>]
     let main argv = 
         let nbTest =  consoleReadInt()
         solution nbTest
