@@ -55,7 +55,7 @@
     <Content Include="packages.config" />
     <Compile Include="02_Fibonacci_Even.fs" />
     <Compile Include="03_LargestPrimeFactor.fs" />
-    <Compile Include="old.fs" />
+    <Compile Include="04_LargestPalindromeProduct.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

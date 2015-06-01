@@ -79,7 +79,7 @@ module Program =
     open Solution
     
     //Main program:
-    [<EntryPoint>]
+    //[<EntryPoint>]
     let main argv = 
         let nbTest =  consoleReadInt()
         solution nbTest
