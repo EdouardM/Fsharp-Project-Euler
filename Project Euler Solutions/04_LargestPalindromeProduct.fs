@@ -19,12 +19,14 @@ module Solution =
     
     ///Sepcial operator to combine boolean functions:      
     let (&&&) f g x = f x && g x 
-       
+    
+    ///Precompute list of Palindromes
+    let listOfPalindromes = [101101L..(999L*999L)] |> List.filter (isPalindrome &&& has3digitsFactors)
+    
     ///Picks the max palindrome less than n
     let largestPalindrome n =
-                            let bound = min (999L * 999L) n
-                            [101101L..bound]
-                            |> Seq.filter (isPalindrome &&& has3digitsFactors)
+                            listOfPalindromes 
+                            |> Seq.filter(fun p -> p < n)
                             |> Seq.max
 
 
