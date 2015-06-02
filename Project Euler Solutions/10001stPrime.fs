@@ -4,7 +4,8 @@ module Solution =
     open System
     open Checked
 
-    ///////////// CORE LOGIC ///////////////////    
+    ///////////// CORE LOGIC ///////////////////
+          
     let noFactorOf n s = s |> Seq.exists(fun i -> n % i = 0L ) |> not
 
      ///Tells if a number is a Prime number
@@ -13,14 +14,18 @@ module Solution =
                     seq{2L..bound} |> noFactorOf n
     
     ///Active Pattern Prime numbers
-    let (|Prime|_|) n = if isPrime n then Some(n) else None 
+    let (|Prime|_|) n = if isPrime n then 
+                            Some(n) 
+                        else 
+                            None 
 
     let rec nextPrime i = match (i + 1L) with
                             | Prime n -> n
                             | _ -> nextPrime (i + 1L)
 
-    //Prime numbers infinite sequence
-    let primes = Seq.unfold (fun i -> Some(i, nextPrime i)) 1L
+    //Prime numbers memorized list
+    let primes = Seq.unfold (fun (i, count) -> if count <= 10000L then Some(i, (nextPrime i, count + 1L)) else None) (1L, 0L)
+                 |> Seq.toList
 
     let getNthPrime (n:int64) = 
                         let n' = int n
