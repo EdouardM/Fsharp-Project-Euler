@@ -8,14 +8,12 @@ module Solution =
 
     ///Computes sum of squares from 1 to n
     let sumSquares n = 
-                    [1L..n] 
-                    |> List.map square
-                    |> List.reduce(fun i j -> i + j)
+                    n * (n + 1L) * (2L*n + 1L) / 6L
 
     ///Computes the square of sum
     let squareSum n = 
-                    [1L..n]
-                    |> List.reduce(fun i j -> i + j)
+                    //Sum from 1 to n
+                    n * (n+1L) /2L
                     |> square
 
     ///Computes difference between square of sum and sum of squares      
