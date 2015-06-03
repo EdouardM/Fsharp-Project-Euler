@@ -58,7 +58,8 @@
     <Compile Include="04_LargestPalindromeProduct.fs" />
     <Compile Include="05_SmallestMultiple.fs" />
     <Compile Include="06_SumSquareDifference.fs" />
-    <Compile Include="10001stPrime.fs" />
+    <Compile Include="07_10001stPrime.fs" />
+    <Compile Include="08_LargestProductInSeries.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
