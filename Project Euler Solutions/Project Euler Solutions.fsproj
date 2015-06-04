@@ -60,6 +60,7 @@
     <Compile Include="06_SumSquareDifference.fs" />
     <Compile Include="07_10001stPrime.fs" />
     <Compile Include="08_LargestProductInSeries.fs" />
+    <Compile Include="09_PythagorianTriplet.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
