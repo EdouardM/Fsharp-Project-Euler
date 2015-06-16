@@ -1,9 +1,18 @@
 ﻿namespace ProjectEuler.SummationOfPrimes
 
+module Map = 
+    ///Get last values smaller than input in Map with key as int64
+    let rec getLast map i = match map |> Map.tryFind(i) with
+                                | Some(sum) -> sum
+                                | None -> getLast map (i-1L) 
+
+
 module Solution = 
     open System
     open Checked
-
+    
+    let todo = ()
+    
     ///////////// CORE LOGIC ///////////////////
     let noFactorOf n s = s |> Seq.exists(fun i -> n % i = 0L ) |> not
 
@@ -17,18 +26,23 @@ module Solution =
                             Some(n) 
                         else 
                             None 
+    ///Computes primes and sum
+    let rec nextPrime (i, sum) = match (i + 1L) with
+                                    | Prime n -> (n, sum + n)
+                                    | _ -> nextPrime ((i + 1L), sum)
 
-    let rec nextPrime i = match (i + 1L) with
-                            | Prime n -> n
-                            | _ -> nextPrime (i + 1L)
+    //Prime numbers memorized Map
+    let primes = Seq.unfold (fun (i,sum) -> if i <= 1000000L then Some((i,sum), nextPrime (i,sum)) else None) (2L,2L)
+                 |> Map.ofSeq
 
-    //Prime numbers memorized list
-    let primes = Seq.unfold (fun i -> if i <= 1000000L then Some(i, nextPrime i) else None) 2L
-                 |> Seq.toList
-    
     ///Computes the sum of primes below n
-    let sumOfPrimes n = primes  |> Seq.takeWhile (fun p -> p <= n)
-                                |> Seq.reduce (fun p p' -> p + p')
+    let sumOfPrimes n = Map.getLast primes n
+                          
+    ///Find the sum of all primes not greater than n
+    let summmationOfPrimes = function
+                                | 1L -> 1L
+                                | n when n > 1L -> sumOfPrimes n
+                                | _ -> 0L
 
 ///////////// INPUT OUTPUT //////////////////// 
     ///Reads input in Console, casts to int64
