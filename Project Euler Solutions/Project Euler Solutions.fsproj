@@ -62,6 +62,7 @@
     <Compile Include="08_LargestProductInSeries.fs" />
     <Compile Include="09_PythagorianTriplet.fs" />
     <Compile Include="10_SummationOfPrimes.fs" />
+    <Compile Include="11_LargestProductInGrid.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
