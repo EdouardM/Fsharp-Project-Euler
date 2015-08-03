@@ -1,12 +1,5 @@
 ﻿namespace ProjectEuler.HighlyDivisibleTriangleNumber
 
-
-module Map = 
-    ///Get last values smaller than input in Map with key as int64
-    let rec getLast map i = match map |> Map.tryFind(i) with
-                                | Some(sum) -> sum
-                                | None -> getLast map (i+1) 
-
 module Memoization =
     open System.Collections.Generic
 
@@ -132,7 +125,7 @@ module Solution =
                       |]|> Map.ofArray
 
     ///////////// INPUT OUTPUT //////////////////// 
-    ///Reads input in Console, casts to int64
+    ///Reads input in Console, casts to int
     let consoleRead() =  
                             let str  = Console.ReadLine()
                             str |> int
