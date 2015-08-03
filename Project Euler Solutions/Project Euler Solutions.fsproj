@@ -65,6 +65,7 @@
     <Compile Include="11_LargestProductInGrid.fs" />
     <Compile Include="12_HighlyDivisibleTriangleNumber.fs" />
     <Compile Include="13_LargeSum.fs" />
+    <Compile Include="14_LongestCollatz.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
