@@ -63,6 +63,7 @@
     <Compile Include="09_PythagorianTriplet.fs" />
     <Compile Include="10_SummationOfPrimes.fs" />
     <Compile Include="11_LargestProductInGrid.fs" />
+    <Compile Include="12_HighlyDivisibleTriangleNumber.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
