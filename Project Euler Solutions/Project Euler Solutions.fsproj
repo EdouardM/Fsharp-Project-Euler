@@ -66,6 +66,7 @@
     <Compile Include="12_HighlyDivisibleTriangleNumber.fs" />
     <Compile Include="13_LargeSum.fs" />
     <Compile Include="14_LongestCollatz.fs" />
+    <Compile Include="15_LatticePaths.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
