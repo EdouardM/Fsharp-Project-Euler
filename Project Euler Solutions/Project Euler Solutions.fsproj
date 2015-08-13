@@ -68,6 +68,7 @@
     <Compile Include="14_LongestCollatz.fs" />
     <Compile Include="15_LatticePaths.fs" />
     <Compile Include="16_PowerDigitSum.fs" />
+    <Compile Include="17_NumberToWords.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
