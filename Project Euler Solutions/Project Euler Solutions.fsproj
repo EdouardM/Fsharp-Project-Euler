@@ -53,6 +53,22 @@
   <ItemGroup>
     <Compile Include="01_Multipleof_3and5.fs" />
     <Content Include="packages.config" />
+    <Compile Include="02_Fibonacci_Even.fs" />
+    <Compile Include="03_LargestPrimeFactor.fs" />
+    <Compile Include="04_LargestPalindromeProduct.fs" />
+    <Compile Include="05_SmallestMultiple.fs" />
+    <Compile Include="06_SumSquareDifference.fs" />
+    <Compile Include="07_10001stPrime.fs" />
+    <Compile Include="08_LargestProductInSeries.fs" />
+    <Compile Include="09_PythagorianTriplet.fs" />
+    <Compile Include="10_SummationOfPrimes.fs" />
+    <Compile Include="11_LargestProductInGrid.fs" />
+    <Compile Include="12_HighlyDivisibleTriangleNumber.fs" />
+    <Compile Include="13_LargeSum.fs" />
+    <Compile Include="14_LongestCollatz.fs" />
+    <Compile Include="15_LatticePaths.fs" />
+    <Compile Include="16_PowerDigitSum.fs" />
+    <Compile Include="17_NumberToWords.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
