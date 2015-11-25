@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="01_Multipleof_3and5.fs" />
     <Content Include="packages.config" />
+    <Compile Include="02_Fibonacci_Even.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
