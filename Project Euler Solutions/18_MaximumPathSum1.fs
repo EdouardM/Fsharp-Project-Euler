@@ -3,7 +3,7 @@ namespace ProjectEuler.MaximumPathSum
 
 module Solution =
     open System
-
+    
     type Number = { Position: int; Value: int }
     
     let rec loop numbers acc =
@@ -14,9 +14,13 @@ module Solution =
                 let num = 
                     l
                     |> List.filter(fun n -> n.Position = pos || n.Position = pos + 1) 
-                    |> List.maxBy(fun n -> n.Value)
+                    |> List.maxBy(fun n -> 
+                        let newAcc = n.Position, n.Value + sum
+                        loop ls newAcc |> snd)
                 let newAcc = num.Position, num.Value + sum
+                printfn "newAcc: pos:%d // sum: %d" num.Position (snd newAcc)
                 loop ls newAcc
+                
                 
     let readInput() =
         //Number of rows of triangle
@@ -40,7 +44,7 @@ module Solution =
         |> ignore
         0
     
-    (*            
+    (*
     let l =
         [ [3]; [7;4]; [2;4;6]; [8;5;9;3]]
         |> List.map (List.mapi(fun i x -> {Position = i; Value = x}))
