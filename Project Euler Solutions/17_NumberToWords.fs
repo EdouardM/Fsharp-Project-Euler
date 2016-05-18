@@ -67,7 +67,7 @@ module Solution =
          Array.init n (fun i -> Console.ReadLine() |> int64)
          |> Array.map (fun i -> if i = 0L then "Zero" else (convert i) )
          |> Array.map (fun s -> printfn "%s" s)
-         |> ignore    
+         |> ignore
 
 //Build the program which runs in Console & HackerRank:
 module Program = 

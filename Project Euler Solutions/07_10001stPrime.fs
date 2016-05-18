@@ -9,8 +9,10 @@ module Solution =
 
      ///Tells if a number is a Prime number
     let isPrime n = 
-                    let bound = int64 (sqrt(float n))
-                    seq{2L..bound} |> noFactorOf n
+                    if n = 1L then false
+                    else
+                        let bound = int64 (sqrt(float n))
+                        seq{2L..bound} |> noFactorOf n
     
     ///Active Pattern Prime numbers
     let (|Prime|_|) n = if isPrime n then 

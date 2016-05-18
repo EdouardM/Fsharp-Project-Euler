@@ -9,7 +9,7 @@ module Solution =
     let isEven = function
                     | n when n % 2L = 0L -> true
                     | _ -> false
-
+ 
     ///Builds a sequence of fibonacci numbers:
     let fiboUtil n = Seq.unfold (fun (n0, n1) -> if (n0 > n) then None else Some(n0 , (n1 , n0 + n1))) (1L,1L)
 
@@ -18,17 +18,16 @@ module Solution =
 
      ///////////// INPUT OUTPUT ////////////////////
     //Read input in Console, cast to int64:
-    let consoleReadInt() =  
-                            let str  = Console.ReadLine()
+    let consoleReadInt() =  let str  = Console.ReadLine()
                             try
                                     Some(str|> int64)
                             with
-                                    ex-> 
+                                    ex->
                                         printfn "Bad input: %s" str
                                         None
 
     //Print output to Console:
-    let consolePrint l = 
+    let consolePrint l =
                          l |> Array.map(fun elem -> match elem with
                                                     | Some(n) -> sprintf "%d" n
                                                     | None -> "")
@@ -36,9 +35,9 @@ module Solution =
 
     ///////////// BUILD SOLUTION ////////////////////
     //Function for the solution:
-    let solution (n:int64 option) = 
-             match n with 
-                | Some(n) -> 
+    let solution (n:int64 option) =
+             match n with
+                | Some(n) ->
                             //Cast to int to use List.init:
                             let n' = int n
                             Array.init n' (fun i -> consoleReadInt()) |> Array.map(fun elem -> Option.map evenFibo elem)
@@ -48,15 +47,12 @@ module Solution =
 
 
 //Build the program which runs in Console & HackerRank:
-module Program = 
+module Program =
     open Solution
-    
+
     //Main program:
     //[<EntryPoint>]
-    let main argv = 
+    let main argv =
         let nbTest =  consoleReadInt()
         solution nbTest
         0
-
-
-
