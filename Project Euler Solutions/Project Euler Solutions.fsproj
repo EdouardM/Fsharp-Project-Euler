@@ -71,6 +71,8 @@
     <Compile Include="17_NumberToWords.fs" />
     <Compile Include="18_NumberToWords.fs" />
     <Compile Include="19_Counting_Sundays.fs" />
+    <Compile Include="20_Factorial_Digit_Sum.fs" />
+    <Compile Include="21_Amicable_Numbers.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
